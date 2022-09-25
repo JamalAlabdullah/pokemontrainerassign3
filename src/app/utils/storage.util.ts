@@ -6,19 +6,19 @@ public static storageSave<T>(key:string, value:T):void
 }
 
 
-public static storageRead<T>(key:string): T | null {
+public static storageRead<T>(key:string): T | undefined {
     const storageValue= sessionStorage.getItem(key);
     try {
         if(storageValue){
             return JSON.parse(storageValue) as T;
 
         }
-            return null;
+            return undefined;
 
         
     } catch (e) {
         sessionStorage.removeItem(key);
-        return null;
+        return undefined;
         
     }
   }

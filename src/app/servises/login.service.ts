@@ -1,10 +1,8 @@
-import { StorageKeys } from './../enums/storage-keys.enum';
-import { StorageUtil } from './../utils/storage.util';
 
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http'
-import {map,Observable,of,switchMap,tap} from 'rxjs';
+import {map,Observable,of,switchMap} from 'rxjs';
 import { User } from '../models/user.model';
 
 const {apiTrainer, apiKey} = environment;
@@ -28,11 +26,6 @@ export class LoginService {
 
         }
         return of(user);
-      }),
-      // save the user in storage if exists 
-      tap((user:User)=> {
-        StorageUtil.storageSave<User>(StorageKeys.User,user)
-
       })
     )
 
