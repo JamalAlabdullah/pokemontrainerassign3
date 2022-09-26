@@ -37,7 +37,7 @@ export class PokemonCatalogueService {
 
   public findAllPokemon(): void {
     this._loading= true;
-    this.http.get<Pokemon[]>(`${apiPokemons}?offset=0&limit=1154`)
+    this.http.get<Pokemon[]>(`${apiPokemons}?offset=0&limit=151`)
     .pipe(
       finalize(() => {
         this._loading= false;
