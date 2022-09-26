@@ -35,24 +35,16 @@ export class PokemonCatalogueService {
 
   constructor(private readonly http:HttpClient) { }
 
-  public findAllPokemon():void {
+  public findAllPokemon(): void {
     this._loading= true;
-    this.http.get<Pokemon[]>(apiPokemons)
+    this.http.get<Pokemon[]>(`${apiPokemons}?offset=0&limit=1154`)
     .pipe(
       finalize(() => {
         this._loading= false;
       })
     )
-    .subscribe({
-      next: (pokemons: Pokemon[]) => {
-        this._pokemons=pokemons;
-        console.log(pokemons);
-      },
-      error: (error: HttpErrorResponse) => {
-        this._error= error.message;
-
-      }
-    })
-
+    .toPromise()
+    .then(response => JSON.parse(JSON.stringify(response)).results)
+    .then(response => this._pokemons = response)
   }
 }
