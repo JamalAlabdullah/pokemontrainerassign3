@@ -14,15 +14,13 @@ export class PokemonCataloguePage implements OnInit {
     return this.pokemonCatalogueService.pokemons;
   }
 
-  
+  get loading (): boolean{
+    return this.pokemonCatalogueService.loading;
+  }
 
-get loading (): boolean{
-  return this.pokemonCatalogueService.loading;
-}
-
-get error(): string {
-  return this.pokemonCatalogueService.error;
-}
+  get error(): string {
+    return this.pokemonCatalogueService.error;
+  }
 
   constructor(private readonly pokemonCatalogueService:PokemonCatalogueService) { }
 
