@@ -9,9 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PokemonCataloguePage implements OnInit {
 
-
-  get pokemons(): Pokemon[]{
-    return this.pokemonCatalogueService.pokemons;
+  get pokemons(): Pokemon[] {
+    return this.pokemonCatalogueService.pokemons!;
   }
 
   get loading (): boolean{
@@ -25,7 +24,6 @@ export class PokemonCataloguePage implements OnInit {
   constructor(private readonly pokemonCatalogueService:PokemonCatalogueService) { }
 
   ngOnInit(): void {
-    this.pokemonCatalogueService.findAllPokemon();
   }
 
 }

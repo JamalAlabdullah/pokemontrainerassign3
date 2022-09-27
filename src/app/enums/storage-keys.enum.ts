@@ -1,4 +1,5 @@
 
 export enum StorageKeys {
-    User= "pokemon-user"
+    User= "pokemon-user",
+    PokemonList = "pokemons"
 }
