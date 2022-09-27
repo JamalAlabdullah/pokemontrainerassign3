@@ -37,9 +37,8 @@ export class PokemonCatalogueService {
 
   public findAllPokemon(): void {
     if (StorageUtil.storageRead<Pokemon[]>(StorageKeys.PokemonList) === undefined) {
-      console.log("Pokemon being fetched from API!")
       this._loading= true;
-      this.http.get<Pokemon[]>(`${apiPokemons}?offset=0&limit=9`)
+      this.http.get<Pokemon[]>(`${apiPokemons}?offset=0&limit=151`)
         .pipe(
           finalize(() => {
             this._loading= false;
@@ -50,7 +49,6 @@ export class PokemonCatalogueService {
               .then((response) => StorageUtil.storageSave<Pokemon[]>(StorageKeys.PokemonList, response!))
     }
     else {
-      console.log("Pokemon found in session storage!");
       this._pokemons = StorageUtil.storageRead<Pokemon[]>(StorageKeys.PokemonList)
     }
   }
