@@ -3,56 +3,53 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Pokemon } from '../models/pokemon.model';
 import { finalize } from 'rxjs';
+import { StorageUtil } from '../utils/storage.util';
+import { StorageKeys } from '../enums/storage-keys.enum';
 
 
-
-const {apiPokemons} = environment;
-
+const { apiPokemons } = environment;
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonCatalogueService {
 
-  private _pokemons: Pokemon[] = [];
+  private _pokemons?: Pokemon[] = [];
   private _error:string = "";
   private _loading : boolean= false;
 
-
-  get pokemons(): Pokemon[]{
-    return this._pokemons;
+  constructor(private readonly http:HttpClient) {
+    // initialize pokemons
+    this.findAllPokemon();
   }
 
+  get pokemons(): Pokemon[] | undefined {
+      return StorageUtil.storageRead<Pokemon[]>(StorageKeys.PokemonList);
+  }
 
-    get error(): string {
-      return this._error;
+  get error(): string {
+    return this._error;
+  }
+
+  get loading(): boolean{
+    return this._loading;
+  }
+
+  public findAllPokemon(): void {
+    if (StorageUtil.storageRead<Pokemon[]>(StorageKeys.PokemonList) === undefined) {
+      this._loading= true;
+      this.http.get<Pokemon[]>(`${apiPokemons}?offset=0&limit=151`)
+        .pipe(
+          finalize(() => {
+            this._loading= false;
+          })
+        )
+          .toPromise()
+            .then(response => JSON.parse(JSON.stringify(response)).results)
+              .then((response) => StorageUtil.storageSave<Pokemon[]>(StorageKeys.PokemonList, response!))
     }
-
-
-    get loading(): boolean{
-      return this._loading;
+    else {
+      this._pokemons = StorageUtil.storageRead<Pokemon[]>(StorageKeys.PokemonList)
     }
-
-  constructor(private readonly http:HttpClient) { }
-
-  public findAllPokemon():void {
-    this._loading= true;
-    this.http.get<Pokemon[]>(apiPokemons)
-    .pipe(
-      finalize(() => {
-        this._loading= false;
-      })
-    )
-    .subscribe({
-      next: (pokemons: Pokemon[]) => {
-        this._pokemons=pokemons;
-        console.log(pokemons);
-      },
-      error: (error: HttpErrorResponse) => {
-        this._error= error.message;
-
-      }
-    })
-
   }
 }
