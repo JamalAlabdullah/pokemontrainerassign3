@@ -1,3 +1,6 @@
+import { Pokemon } from './../../models/pokemon.model';
+import { User } from './../../models/user.model';
+import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrainerPage implements OnInit {
 
-  constructor() { }
+
+  get user(): User | undefined {
+    return this.useService.user;
+  }
+
+  get pokemons() :Pokemon[]{
+    if(this.useService.user){
+      return this.useService.user.pokemon
+    }
+    return [];
+  }
+
+
+
+  constructor( private useService : UserService) { }
 
   ngOnInit(): void {
   }

@@ -1,0 +1,23 @@
+.welcomeMessage{
+    text-align: center;
+    font-size: x-large;
+}
+
+
+.result{
+    margin-left: 40px;
+    margin-bottom: 10px;
+    color: green;
+}
+
+
+.trainername{
+   
+    
+  
+    color: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    
+   
+    color: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    color: #d8363a;
+}

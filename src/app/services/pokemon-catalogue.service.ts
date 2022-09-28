@@ -36,6 +36,15 @@ export class PokemonCatalogueService {
   }
 
   public findAllPokemon(): void {
+
+    if (this._pokemons?.length != 0 || this.loading) {
+      return ;
+    }
+
+
+
+
+
     if (StorageUtil.storageRead<Pokemon[]>(StorageKeys.PokemonList) === undefined) {
       this._loading= true;
       this.http.get<Pokemon[]>(`${apiPokemons}?offset=0&limit=151`)
@@ -52,4 +61,23 @@ export class PokemonCatalogueService {
       this._pokemons = StorageUtil.storageRead<Pokemon[]>(StorageKeys.PokemonList)
     }
   }
+
+
+
+ 
+
+public pokemonByName(name:string) : Pokemon | undefined{
+
+    return this._pokemons?.find((pokemon: Pokemon) => pokemon.name===name );
+   }
+
+
+ 
+ 
+
+   
+
+
+
+
 }
