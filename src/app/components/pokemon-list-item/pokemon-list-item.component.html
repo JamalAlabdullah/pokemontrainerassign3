@@ -7,12 +7,15 @@
    
     <li *ngIf="pokemon" class="mb-7 shadow">
         <section class="p-4">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{index}}.png" alt={{index}} class="block" />
+            <!-- <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{index}}.png" alt={{index}} class="block" /> -->
         </section>
         <section class="p-4">
             <span class="pokName">{{ pokemon.name }}</span><br>
            
             <button type="submit" class="btn btn-primary btn-block fa-lg pickUpBtn mb-3">Catch me</button>
+            <button type="button" class="btn btn-secondary btn-block fa-lg pickUpBtn mb-3" (click)="toggleDetails()">Show more info</button>
+            <!-- <p>{{toggle}}</p> -->
+            <!-- <p *ngIf="toggle">test</p> -->
         </section>
     </li>
 </div>
