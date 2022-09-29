@@ -1,48 +1,43 @@
-import { UserService } from './../../services/user.service';
+import { UserService } from '../../services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { CatchedPokemonService } from './../../services/catched-pokemon.service';
+import { CaughtPokemonService } from '../../services/caught-pokemon.service';
 import { Component,Input, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { Pokemon } from 'src/app/models/pokemon.model';
 
 @Component({
   selector: 'app-catched-pokemon-button',
-  templateUrl: './catched-pokemon-button.component.html',
-  styleUrls: ['./catched-pokemon-button.component.css']
+  templateUrl: './caught-pokemon-button.component.html',
+  styleUrls: ['./caught-pokemon-button.component.css']
 })
-export class CatchedPokemonButtonComponent implements OnInit {
+export class CaughtPokemonButtonComponent implements OnInit {
 
 
-//@Input() pokemonId:string="";
-
-
-public isCatched:boolean= false;
+public isCatched:boolean = false;
 @Input() pokemon?: Pokemon;
 
    get loading() : boolean{
     return this.catchedPokemonService.loading;
    }
 
-  
-
-
-  constructor(
+  constructor (
     private userService: UserService,
-    private readonly catchedPokemonService: CatchedPokemonService
+    private readonly catchedPokemonService: CaughtPokemonService
   ) { }
 
   ngOnInit(): void {
-    this.isCatched= this.userService.inFavourites(this.pokemon!.name)
+    this.isCatched = this.userService.inFavourites(this.pokemon!.name)
   }
 
 
   onCatchedPokemonClick(): void {
     // add catched pokemon to trainer page 
     alert("you catched " + this.pokemon?.name)
+    
     this.catchedPokemonService.addToTrainerPage(this.pokemon!.name)
     .subscribe({
-      next:(user:User) => {
-        this.isCatched=this.userService.inFavourites(this.pokemon!.name)
+      next: (user:User) => {
+        this.isCatched = this.userService.inFavourites(this.pokemon!.name)
       },
       error: (error: HttpErrorResponse) => {
         console.log("ERROR", error.message);
@@ -50,21 +45,18 @@ public isCatched:boolean= false;
     })
   }
   
-
   removeFromTrainerPage(){
     // remove pokemon from trainer page
-    console.log("works");
     alert("you removed " + this.pokemon?.name)
+
     this.catchedPokemonService.removeFromTrainerPage(this.pokemon!.name)
     .subscribe({
-      next:(user:User) => {
+      next: (user:User) => {
         this.isCatched=this.userService.inFavourites(this.pokemon!.name)
       },
       error: (error: HttpErrorResponse) => {
         console.log("ERROR", error.message);
       }
     })
-    
   }
-
 }

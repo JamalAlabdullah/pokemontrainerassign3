@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { PokemonListComponent } from './components/pokemon-list/pokemon-list.component';
 import { PokemonListItemComponent } from './components/pokemon-list-item/pokemon-list-item.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { CatchedPokemonButtonComponent } from './components/catched-pokemon-button/catched-pokemon-button.component';
+import { CaughtPokemonButtonComponent } from './components/caught-pokemon-button/caught-pokemon-button.component';
 
 
 // Decorator
@@ -27,7 +27,7 @@ import { CatchedPokemonButtonComponent } from './components/catched-pokemon-butt
     PokemonListComponent,
     PokemonListItemComponent,
     NavbarComponent,
-    CatchedPokemonButtonComponent
+    CaughtPokemonButtonComponent
   ],
   imports: [   /// to import modules 
     BrowserModule,

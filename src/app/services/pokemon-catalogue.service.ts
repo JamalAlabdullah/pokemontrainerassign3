@@ -42,7 +42,7 @@ export class PokemonCatalogueService {
       this.http.get<Pokemon[]>(`${apiPokemons}?offset=0&limit=151`)
         .pipe(
           finalize(() => {
-            this._loading= false;
+            this._loading = false;
           })
         )
         .subscribe({
@@ -57,8 +57,7 @@ export class PokemonCatalogueService {
               StorageUtil.storageSave<Pokemon[]>(StorageKeys.PokemonList, this._pokemons!)
             }
           },
-          error: ()=>{
-          }
+          error: () => {}
         })
     }
     else {
@@ -67,7 +66,6 @@ export class PokemonCatalogueService {
   }
 
   public pokemonByName(name:string) : Pokemon | undefined{
-    return this._pokemons?.find((pokemon: Pokemon) => pokemon.name===name );
+    return this._pokemons?.find((pokemon: Pokemon) => pokemon.name === name);
   }
-
 }

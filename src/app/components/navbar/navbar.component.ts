@@ -9,11 +9,9 @@ import { User } from 'src/app/models/user.model';
 })
 export class NavbarComponent implements OnInit {
 
-
-get user(): User | undefined {
-  return this.userService.user;
-}
-
+  get user(): User | undefined {
+    return this.userService.user;
+  }
 
   constructor(
     private readonly userService:UserService
@@ -21,5 +19,4 @@ get user(): User | undefined {
 
   ngOnInit(): void {
   }
-
 }

@@ -14,22 +14,20 @@ export class UserService {
     return this._user;
   }
 
-
-  set user(user:User | undefined){
+  set user(user:User | undefined) {
     StorageUtil.storageSave<User>(StorageKeys.User, user!);
-    this._user=user;
+    this._user = user;
   }
 
   constructor() { 
     this._user = StorageUtil.storageRead<User>(StorageKeys.User);
   }
 
-
-
   public inFavourites(pokemonId:string ): boolean {
-    if(this._user){
-      return Boolean(this.user?.pokemon.find((pokemon: Pokemon) => pokemon.name===pokemonId));
+    if (this._user) {
+      return Boolean(this.user?.pokemon.find((pokemon: Pokemon) => pokemon.name === pokemonId));
     }
+    
    return false
   }
 }
