@@ -21,7 +21,8 @@ export class PokemonCataloguePage implements OnInit {
     return this.pokemonCatalogueService.error;
   }
 
-  constructor(private readonly pokemonCatalogueService:PokemonCatalogueService) { }
+  constructor(private readonly pokemonCatalogueService:PokemonCatalogueService) {
+   }
 
   ngOnInit(): void {
   }

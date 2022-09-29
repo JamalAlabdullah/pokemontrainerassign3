@@ -1,20 +1,13 @@
-
-
-
 <div class="grid-container">
-        <div class="grid-item">
-
-   
-    <li *ngIf="pokemon" class="mb-7 shadow">
-        <section class="p-4">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{index}}.png" alt={{index}} class="block" />
-        </section>
-        <section class="p-4">
-            <span class="pokName">{{ pokemon.name }}</span><br>
-           
-            <button type="submit" class="btn btn-primary btn-block fa-lg pickUpBtn mb-3">Catch me</button>
-        </section>
-    </li>
-</div>
-
+    <div class="grid-item">
+        <li *ngIf="pokemon" class="mb-7 shadow">
+            <section class="p-4">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemon.id }}.png" class="block" />
+            </section>
+            <section class="p-4">  
+                <span class="pokName">{{ pokemon.name }}</span><br>
+                <!-- <app-catched-pokemon-button [pokemonName]="pokemon.name"></app-catched-pokemon-button> -->
+            </section>
+        </li>
+    </div>
 </div>
