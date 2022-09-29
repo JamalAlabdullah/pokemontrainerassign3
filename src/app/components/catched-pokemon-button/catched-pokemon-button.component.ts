@@ -38,7 +38,7 @@ public isCatched:boolean= false;
 
   onCatchedPokemonClick(): void {
     // add catched pokemon to trainer page 
-    alert("you catched  " + this.pokemon)
+    alert("you catched " + this.pokemon?.name)
     this.catchedPokemonService.addToTranerPage(this.pokemon!.name)
     .subscribe({
       next:(user:User) => {
