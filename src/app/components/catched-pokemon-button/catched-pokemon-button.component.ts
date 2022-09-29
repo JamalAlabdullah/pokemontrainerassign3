@@ -3,6 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { CatchedPokemonService } from './../../services/catched-pokemon.service';
 import { Component,Input, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
+import { Pokemon } from 'src/app/models/pokemon.model';
 
 @Component({
   selector: 'app-catched-pokemon-button',
@@ -16,7 +17,7 @@ export class CatchedPokemonButtonComponent implements OnInit {
 
 
 public isCatched:boolean= false;
-@Input() pokemonName:string="";
+@Input() pokemon?: Pokemon;
 
    get loading() : boolean{
     return this.catchedPokemonService.loading;
@@ -31,17 +32,17 @@ public isCatched:boolean= false;
   ) { }
 
   ngOnInit(): void {
-    this.isCatched= this.userService.inFavourites(this.pokemonName)
+    this.isCatched= this.userService.inFavourites(this.pokemon!.name)
   }
 
 
   onCatchedPokemonClick(): void {
     // add catched pokemon to trainer page 
-    alert("you catched  " + this.pokemonName)
-    this.catchedPokemonService.addToTranerPage(this.pokemonName)
+    alert("you catched  " + this.pokemon)
+    this.catchedPokemonService.addToTranerPage(this.pokemon!.name)
     .subscribe({
       next:(user:User) => {
-        this.isCatched=this.userService.inFavourites(this.pokemonName)
+        this.isCatched=this.userService.inFavourites(this.pokemon!.name)
         
       },
       error: (error: HttpErrorResponse) => {

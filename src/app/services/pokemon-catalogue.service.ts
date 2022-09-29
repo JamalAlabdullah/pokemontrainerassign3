@@ -37,47 +37,37 @@ export class PokemonCatalogueService {
 
   public findAllPokemon(): void {
 
-    if (this._pokemons?.length != 0 || this.loading) {
-      return ;
-    }
-
-
-
-
-
     if (StorageUtil.storageRead<Pokemon[]>(StorageKeys.PokemonList) === undefined) {
-      this._loading= true;
+      this._loading = true;
       this.http.get<Pokemon[]>(`${apiPokemons}?offset=0&limit=151`)
         .pipe(
           finalize(() => {
             this._loading= false;
           })
         )
-          .toPromise()
-            .then(response => JSON.parse(JSON.stringify(response)).results)
-              .then((response) => StorageUtil.storageSave<Pokemon[]>(StorageKeys.PokemonList, response!))
+        .subscribe({
+          next: (pokemons: Object) => {
+            let { results } = Object(pokemons);
+            for (let i = 0; i < results.length; i++) {
+              let pokemon = results[i];
+              const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i + 1}.png`
+              pokemon.imgUrl = imgUrl;
+              pokemon.id = i + 1;
+              this._pokemons?.push(pokemon);
+              StorageUtil.storageSave<Pokemon[]>(StorageKeys.PokemonList, this._pokemons!)
+            }
+          },
+          error: ()=>{
+          }
+        })
     }
     else {
       this._pokemons = StorageUtil.storageRead<Pokemon[]>(StorageKeys.PokemonList)
     }
   }
 
-
-
- 
-
-public pokemonByName(name:string) : Pokemon | undefined{
-
+  public pokemonByName(name:string) : Pokemon | undefined{
     return this._pokemons?.find((pokemon: Pokemon) => pokemon.name===name );
-   }
-
-
- 
- 
-
-   
-
-
-
+  }
 
 }

@@ -7,11 +7,10 @@
    
     <li *ngIf="pokemon" class="mb-7 shadow">
         <section class="p-4">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{index}}.png" alt={{index}} class="block" />
-        </section>
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemon.id }}.png" class="block" />        </section>
         <section class="p-4">  
             <span class="pokName">{{ pokemon.name }}</span><br>
-            <app-catched-pokemon-button [pokemonName]="pokemon.name"></app-catched-pokemon-button>
+            <app-catched-pokemon-button [pokemon]="pokemon"></app-catched-pokemon-button>
            
         </section>
     </li>

@@ -1,9 +1,6 @@
 <ul>
     <app-pokemon-list-item 
-        *ngFor="let pokemon of pokemons; let i = index"
-        [pokemon]="pokemon"
-        [index]="i + 1">
+        *ngFor="let pokemon of pokemons"
+        [pokemon]="pokemon">
     </app-pokemon-list-item>
 </ul>
-
-
