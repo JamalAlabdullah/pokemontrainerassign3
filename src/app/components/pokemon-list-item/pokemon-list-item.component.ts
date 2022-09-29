@@ -8,10 +8,11 @@ import { Pokemon } from 'src/app/models/pokemon.model';
 })
 export class PokemonListItemComponent implements OnInit {
 
-  @Input() pokemon?: Pokemon; 
-  @Input() index?: number; 
+  @Input() pokemon?: Pokemon;
   
-  constructor() { }
+  constructor() {
+    console.log("Constructing pokemon list item...");
+   }
 
   ngOnInit(): void {
   }

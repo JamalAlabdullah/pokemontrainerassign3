@@ -8,9 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PokemonListComponent implements OnInit {
 
-  @Input() pokemons: Pokemon[]= [];
+  @Input() pokemons: Pokemon[] = [];
 
-  constructor() { }
+  constructor() {
+    console.log("Constructing pokemon list");
+    
+    for (const pokemon of this.pokemons) {  }
+   }
 
   ngOnInit(): void {
   }
