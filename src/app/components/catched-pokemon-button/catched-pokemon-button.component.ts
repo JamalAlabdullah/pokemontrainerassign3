@@ -39,11 +39,10 @@ public isCatched:boolean= false;
   onCatchedPokemonClick(): void {
     // add catched pokemon to trainer page 
     alert("you catched " + this.pokemon?.name)
-    this.catchedPokemonService.addToTranerPage(this.pokemon!.name)
+    this.catchedPokemonService.addToTrainerPage(this.pokemon!.name)
     .subscribe({
       next:(user:User) => {
         this.isCatched=this.userService.inFavourites(this.pokemon!.name)
-        
       },
       error: (error: HttpErrorResponse) => {
         console.log("ERROR", error.message);
@@ -55,6 +54,16 @@ public isCatched:boolean= false;
   removeFromTrainerPage(){
     // remove pokemon from trainer page
     console.log("works");
+    alert("you removed " + this.pokemon?.name)
+    this.catchedPokemonService.removeFromTrainerPage(this.pokemon!.name)
+    .subscribe({
+      next:(user:User) => {
+        this.isCatched=this.userService.inFavourites(this.pokemon!.name)
+      },
+      error: (error: HttpErrorResponse) => {
+        console.log("ERROR", error.message);
+      }
+    })
     
   }
 
