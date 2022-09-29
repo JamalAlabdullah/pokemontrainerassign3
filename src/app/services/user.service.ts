@@ -1,3 +1,4 @@
+import { Pokemon } from 'src/app/models/pokemon.model';
 import { StorageKeys } from './../enums/storage-keys.enum';
 import { User } from './../models/user.model';
 import { Injectable } from '@angular/core';
@@ -21,6 +22,14 @@ export class UserService {
 
   constructor() { 
     this._user = StorageUtil.storageRead<User>(StorageKeys.User);
-    
+  }
+
+
+
+  public inFavourites(pokemonId:string ): boolean {
+    if(this._user){
+      return Boolean(this.user?.pokemon.find((pokemon: Pokemon) => pokemon.name===pokemonId));
+    }
+   return false
   }
 }

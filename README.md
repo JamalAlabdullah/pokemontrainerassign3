@@ -1,27 +1,34 @@
-# Pokemontrainerassign3
+# Pokemon Trainer- Angular Assignment 3 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
+This project was generated with [Angular CLI]. It is the third frond-end assignment in Noroff. This is a web application which is built by Type Script/ Angular. Requirements are to fetch Pokemon list from api, collect some pokemons and store them in the profile of the registered user. 
 
-## Development server
+## Prerequisites
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+In order to use the App you need:
+1.Install Git
+2.Install angular - global
+3.Install NodeJs
+4.Heroku account
 
-## Code scaffolding
+## Instructions and Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Clone the repository to your computer.
+- Run npm install in the root of the repository.
+- Make sure you installed angular CLI.
+- In the root of the folder run: `ng serve`
+- The app will run on `http://localhost:4200/`
 
-## Build
+## API Key
+On your Heroku Dashboard, go to your API application, click the settings tab and look for reveal config vars, there you will find your Api key which should be used in the App code.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## License
 
-## Running unit tests
+It is a public repository
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Project status
 
-## Running end-to-end tests
+It works as well according to the requirements of the assignment. 
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## TODO
+- Build Log out logic
+- build Pagination to move between the pages of all pokemons and reduce the a long scroll.   

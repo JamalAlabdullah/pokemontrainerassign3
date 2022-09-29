@@ -1,0 +1,18 @@
+<div >
+<button 
+(click)="onCatchedPokemonClick()"
+type="submit" class="btn btn-primary btn-block fa-lg pickUpBtn mb-3">Catch me</button>
+
+</div>
+<span *ngIf="isCatched; then caught else notCaught"></span>
+
+<ng-template #caught><p class="caught">It's caught</p>
+    <button
+    (click)="removeFromTrainerPage()"
+     type="submit" class="btn btn-primary btn-block fa-lg releaseBtn mb-3">Release me</button>
+</ng-template>
+
+
+
+<ng-template #notCaught><p class="notCoaught">Not caught yet</p>
+</ng-template>
