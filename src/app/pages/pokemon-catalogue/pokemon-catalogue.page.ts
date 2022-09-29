@@ -13,7 +13,7 @@ export class PokemonCataloguePage implements OnInit {
     return this.pokemonCatalogueService.pokemons!;
   }
 
-  get loading (): boolean{
+  get loading(): boolean{
     return this.pokemonCatalogueService.loading;
   }
 
@@ -22,9 +22,8 @@ export class PokemonCataloguePage implements OnInit {
   }
 
   constructor(private readonly pokemonCatalogueService:PokemonCatalogueService) {
-   }
+  }
 
   ngOnInit(): void {
   }
-
 }

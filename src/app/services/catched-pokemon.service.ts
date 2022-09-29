@@ -10,10 +10,6 @@ import { User } from '../models/user.model';
 
 const {apiKey,apiTrainer} = environment;
 
-
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -21,30 +17,27 @@ export class CatchedPokemonService {
 
   private _loading: boolean = false;
 
-  get loading(): boolean{
+  get loading(): boolean {
     return this._loading;
   }
 
-  constructor(
+  constructor (
     private http:HttpClient,
     private readonly pokemonService: PokemonCatalogueService,
     private readonly userService: UserService
   ) { }
 
-  // get the catched pokemon
-
-  // patch request with userId and name 
-
-    public addToTrainerPage(pokeName:string) : Observable<User>{
+    public addToTrainerPage(pokeName: string): Observable<User> {
 
       if (!this.userService.user) {
-        throw new Error("there i no user")
+        throw new Error("There is no user")
       }
 
       const user: User = this.userService.user;
       const pokemon: Pokemon | undefined = this.pokemonService.pokemonByName(pokeName);
+
       if (!pokemon) { 
-        throw new Error("there is no pokemon with name: " + pokeName)
+        throw new Error("There is no pokemon with name: " + pokeName)
       }
 
       if (this.userService.inFavourites(pokeName)) {
@@ -56,25 +49,25 @@ export class CatchedPokemonService {
         'x-api-key': apiKey
       })
 
-      this._loading=true;
-      return  this.http.patch<User>(`${apiTrainer}/${user.id}`,{
+      this._loading = true;
+      return this.http.patch<User>(`${apiTrainer}/${user.id}`, {
         pokemon:[...user.pokemon, pokemon]
       }, {
         headers
       })
       .pipe(
         tap( (updatedUser:User) => {
-          this.userService.user= updatedUser;
+          this.userService.user = updatedUser;
         }),
         finalize(() => {
-          this._loading=false;
+          this._loading = false;
         })
       )
     } 
 
     public removeFromTrainerPage(pokeName:string) : Observable<User>{
       if (!this.userService.user) {
-        throw new Error("there i no user")
+        throw new Error("There is no user")
       }
 
       const user: User = this.userService.user;

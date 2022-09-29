@@ -1,24 +1,11 @@
-
 <div class="cintainer">
-
-
-
-<header class="container mx-auto p-4">
-    <ng-container *ngIf="user">
-        <h1 class=" welcomeMessage text-3x1 ">Welcome <span class="trainername"> {{user.username}}</span></h1>
-    </ng-container>
-  
-
-</header>
-
-<main class="contianer mx-auto p-4">
-    <h4 class=" result text-xl"> Here are the Pokemon you caught</h4>
-    <app-pokemon-list [pokemons]="pokemons"></app-pokemon-list>
-</main>
-
-
-
+    <header class="container mx-auto p-4">
+        <ng-container *ngIf="user">
+            <h1 class=" welcomeMessage text-3x1 ">Welcome <span class="trainername">{{ user.username }}</span></h1>
+        </ng-container>
+    </header>
+    <main class="contianer mx-auto p-4">
+        <h4 class=" result text-xl"> Here are the Pokemon you caught</h4>
+        <app-pokemon-list [pokemons]="pokemons"></app-pokemon-list>
+    </main>
 </div>
-
-
-<!--animate__animated animate__flipInY -->

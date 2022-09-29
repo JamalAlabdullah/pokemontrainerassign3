@@ -10,19 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrainerPage implements OnInit {
 
-
   get user(): User | undefined {
     return this.useService.user;
   }
 
-  get pokemons() :Pokemon[]{
-    if(this.useService.user){
+  get pokemons(): Pokemon[] {
+    if (this.useService.user) {
       return this.useService.user.pokemon
     }
+
     return [];
   }
-
-
 
   constructor( private useService : UserService) { }
 

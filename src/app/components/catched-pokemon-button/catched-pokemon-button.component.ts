@@ -13,36 +13,31 @@ import { Pokemon } from 'src/app/models/pokemon.model';
 export class CatchedPokemonButtonComponent implements OnInit {
 
 
-//@Input() pokemonId:string="";
-
-
-public isCatched:boolean= false;
+public isCatched:boolean = false;
 @Input() pokemon?: Pokemon;
 
    get loading() : boolean{
     return this.catchedPokemonService.loading;
    }
 
-  
-
-
-  constructor(
+  constructor (
     private userService: UserService,
     private readonly catchedPokemonService: CatchedPokemonService
   ) { }
 
   ngOnInit(): void {
-    this.isCatched= this.userService.inFavourites(this.pokemon!.name)
+    this.isCatched = this.userService.inFavourites(this.pokemon!.name)
   }
 
 
   onCatchedPokemonClick(): void {
     // add catched pokemon to trainer page 
     alert("you catched " + this.pokemon?.name)
+    
     this.catchedPokemonService.addToTrainerPage(this.pokemon!.name)
     .subscribe({
-      next:(user:User) => {
-        this.isCatched=this.userService.inFavourites(this.pokemon!.name)
+      next: (user:User) => {
+        this.isCatched = this.userService.inFavourites(this.pokemon!.name)
       },
       error: (error: HttpErrorResponse) => {
         console.log("ERROR", error.message);
@@ -50,21 +45,18 @@ public isCatched:boolean= false;
     })
   }
   
-
   removeFromTrainerPage(){
     // remove pokemon from trainer page
-    console.log("works");
     alert("you removed " + this.pokemon?.name)
+
     this.catchedPokemonService.removeFromTrainerPage(this.pokemon!.name)
     .subscribe({
-      next:(user:User) => {
+      next: (user:User) => {
         this.isCatched=this.userService.inFavourites(this.pokemon!.name)
       },
       error: (error: HttpErrorResponse) => {
         console.log("ERROR", error.message);
       }
     })
-    
   }
-
 }

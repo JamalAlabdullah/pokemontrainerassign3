@@ -10,13 +10,8 @@ export class PokemonListComponent implements OnInit {
 
   @Input() pokemons: Pokemon[] = [];
 
-  constructor() {
-    console.log("Constructing pokemon list");
-    
-    for (const pokemon of this.pokemons) {  }
-   }
+  constructor() { }
 
   ngOnInit(): void {
   }
-
 }
