@@ -1,16 +1,16 @@
-import { UserService } from './../../services/user.service';
+import { UserService } from '../../services/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { CatchedPokemonService } from './../../services/catched-pokemon.service';
+import { CaughtPokemonService } from '../../services/caught-pokemon.service';
 import { Component,Input, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { Pokemon } from 'src/app/models/pokemon.model';
 
 @Component({
   selector: 'app-catched-pokemon-button',
-  templateUrl: './catched-pokemon-button.component.html',
-  styleUrls: ['./catched-pokemon-button.component.css']
+  templateUrl: './caught-pokemon-button.component.html',
+  styleUrls: ['./caught-pokemon-button.component.css']
 })
-export class CatchedPokemonButtonComponent implements OnInit {
+export class CaughtPokemonButtonComponent implements OnInit {
 
 
 public isCatched:boolean = false;
@@ -22,7 +22,7 @@ public isCatched:boolean = false;
 
   constructor (
     private userService: UserService,
-    private readonly catchedPokemonService: CatchedPokemonService
+    private readonly catchedPokemonService: CaughtPokemonService
   ) { }
 
   ngOnInit(): void {

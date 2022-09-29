@@ -1,5 +1,5 @@
 import { Observable, finalize, tap } from 'rxjs';
-import { Pokemon } from './../models/pokemon.model';
+import { Pokemon } from '../models/pokemon.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserService } from './user.service';
 import { PokemonCatalogueService } from './pokemon-catalogue.service';
@@ -13,7 +13,7 @@ const {apiKey,apiTrainer} = environment;
 @Injectable({
   providedIn: 'root'
 })
-export class CatchedPokemonService {
+export class CaughtPokemonService {
 
   private _loading: boolean = false;
 
